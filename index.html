@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+	<meta http-equiv="Expires" content="Mon, 26 Jul 1997 05:00:00 GMT">
+	<meta http-equiv="Pragma" content="no-cache">
+	<title>Celebrity</title>	
+</head>    
+
+<body>		
+	<div class="content app" >		
+		<div class="nav">
+			<div class="logo">
+				<img src="img/logo.png" alt="">				
+			</div>
+			<button class="market">Market</button>
+			<button class="lab active">My celebrity</button>
+			<button class="battleground">Vote</button>			
+			<a href="#faq" class="popup htp">About</a>
+			<a href="#about" class="popup contact">Contact</a>
+		</div>
+
+		<div class="container">	
+			<div v-show="market">
+				<div id="monster-market">
+					<monster-market
+						v-for="monster in new_market"				  						
+						v-bind:name="monster.name"				  						
+						v-bind:price="monster.price"	
+						v-bind:owner="monster.owner"					
+						v-bind:src="monster.src"		
+						v-bind:id="monster.id"		
+					></monster-market>		
+				</div>
+			</div>
+
+			<div v-show="lab_monsters">
+				<div id="my-monster-lab">
+					<my-monster-lab
+						v-for="monster in my_monsters"				  
+						v-bind:name="monster.name"				  						
+						v-bind:price="monster.price"	
+						v-bind:owner="monster.owner"					
+						v-bind:src="monster.src"		
+						v-bind:id="monster.id"	
+					></my-monster-lab>		
+				</div>						
+			</div>
+			<div class="no_monsters" v-show="no_monsters">
+				<h1>You don't have crypto celebrity at the moment. Go to the market for buy crypto celebrity</h1>					
+			</div>
+			
+			<div v-show="battleground">
+				<div class="no_votes" style="display: none;"><h3></h3></div>
+				<div id="monster-bg">
+					<monster-bg
+						v-for="monster in monsters_battle"				  
+						v-bind:name="monster.name"				  						
+						v-bind:price="monster.price"	
+						v-bind:owner="monster.owner"					
+						v-bind:src="monster.src"		
+						v-bind:id="monster.id"		
+						v-bind:votes="monster.votes"		
+					></monster-bg>		
+				</div>
+			</div>						
+		</div>
+
+		<div id="faq" class="mfp-fade mfp-hide">
+			<div class="container_faq">
+				<h1>About</h1>
+				<p>
+					Buy and collect celebrity cards, with an intuitive and user friendly interface. <br>
+					When buying any card it becomes and the price increases by 20. Other players can buy it. The game does not charge any fees. <br>
+					It ensures the security, fairness and transparency of the game.
+				</p>
+			</div>
+		</div>
+
+		<div id="about" class="mfp-fade mfp-hide">
+			<h1>Contact</h1>
+			<span>E-mail: 
+				<a href="mailto:alexdarkstalkeroriginal@gmail.com">alexdarkstalkeroriginal@gmail.com</a>
+			</span>
+		</div>
+	</div>
+
+	<div id="sell" class="mfp-fade mfp-hide">
+		<h1>Enter price for card-celebrity</h1>
+		<input type="text"><span class="nas">NAS</span>
+		<button class="sell">Sell</button>
+	</div>
+	
+	<a href="#error_info" class="error_info_fake popup"></a>
+
+	<div id="error_info" class="mfp-fade mfp-hide">
+		<h1 class="error"></h1>
+		<button class="ok_err">Ok</button>
+	</div>
+
+	<a href="#sell" class="popup sell_fake"></a>
+	<a href="#my_monsters_popup" class="popup attack_fake"></a>
+
+	<a href="#transaction" class="transaction" style="position: absolute; width: 0.1px; opacity: .1"></a>	
+	<div id="transaction" class="mfp-hide mfp-fade">
+		<p>Transaction is <span class="status_trans"></span></p>
+		<!-- <img src="img/pending.gif" alt=""> -->
+		<div class="hash"></div>			
+	</div>
+	
+	<div class="noExtension" style="display: none"> 
+		NOTE: Please install <a target="_blank" href="https://github.com/ChengOrangeJu/WebExtensionWallet">WebExtensionWallet</a>  to use TheMonsters
+	</div>
+	<div class="errNetwork" style="display: none">
+		NOTE: Sorry, you use incorrect net
+	</div>	
+
+	<script src='lib/jquery-3.3.1.min.js'></script>
+	<link rel="stylesheet" href="lib/main.css">	
+	<link rel="stylesheet" href="lib/magnific-popup.css">    
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+	<script src="lib/vue.min.js"></script>
+	<script src='lib/nebPay.js'></script>    	
+    <script src='lib/nebulas.js'></script>
+    <script src='lib/jquery.magnific-popup.js'></script>
+    <script src="lib/common.js"></script>            
+</body>
+</html>
